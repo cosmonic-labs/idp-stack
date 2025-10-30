@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: welcome-tour
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'ghcr.io/cosmonic-labs/charts'
+    path: 'http-trigger'
+    targetRevision: 0.1.2
+    chart: http-trigger
+    helm:
+      values: |
+        components:
+          - name: welcome-tour
+            image: ghcr.io/cosmonic-labs/components/welcome-tour:0.1.0
+
+        ingress:
+          host: "welcome-tour.localhost.cosmonic.sh:8443"
+
+        hostInterfaces:
+          - namespace: wasi
+            package: config
+            version: 0.2.0-draft
+            interfaces:
+              - runtime
+          - namespace: wasi
+            package: logging
+            version: 0.1.0-draft
+            interfaces:
+              - logging
+
+  destination:
+    name: in-cluster
+    namespace: cosmonic-system
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: -1
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 5m
