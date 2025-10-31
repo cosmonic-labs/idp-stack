@@ -17,7 +17,7 @@ spec:
             image: ghcr.io/cosmonic-labs/components/welcome-tour:0.1.0
 
         ingress:
-          host: "welcome-tour.localhost.cosmonic.sh:8443"
+          host: "welcome-tour.localhost.cosmonic.sh"
 
         hostInterfaces:
           - namespace: wasi
