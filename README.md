@@ -17,17 +17,19 @@ First, install the IDP Builder tool by following the instructions at [idpbuilder
 
 ### 2. Deploy the Stack
 
-To deploy using the public repository:
+To deploy using the public repository, run the following idpbuilder command and then a port-forward to the console:
 
 ```bash
 idpbuilder create --host localhost.cosmonic.sh --extra-ports "80:80" -p https://github.com/cosmonic-labs/idp-stack//cosmonic-control
+
+kubectl -n cosmonic-system port-forward svc/console 8081:8081
 ```
 
 ## Available Services
 
 After successful deployment, the following services will be available:
 
-- **Cosmonic Control Console**: [https://console.localhost.cosmonic.sh:8443/](https://console.localhost.cosmonic.sh:8443/)
+- **Cosmonic Control Console**: [http://localhost:8081/](https://localhost:8081/)
   - Manage and monitor your WebAssembly workloads
   - View system metrics and logs
 
@@ -35,7 +37,7 @@ After successful deployment, the following services will be available:
   - GitOps workflow management
   - Application deployment tracking
 
-- **Welcome Tour App**: [https://welcome-tour.localhost.cosmonic.sh:8443/](https://welcome-tour.localhost.cosmonic.sh:8443/)
+- **Welcome Tour App**: [http://welcome-tour.localhost.cosmonic.sh/](http://welcome-tour.localhost.cosmonic.sh/)
   - Example WebAssembly application
   - Demonstrates successful deployment
 

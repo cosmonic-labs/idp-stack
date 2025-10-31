@@ -13,7 +13,9 @@ spec:
     helm:
       values: |
         cosmonicLicenseKey: "not-a-valid-license"
-        hostName: "http://console.localhost.cosmonic.sh"
+        hostName: "http://localhost:8081"
+        console:
+          port: 8081
         envoy:
           service:
             type: NodePort

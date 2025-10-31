@@ -6,19 +6,24 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # cert-manager.io/cluster-issuer: "letsencrypt-demo"
 spec:
   ingressClassName: nginx
+  # tls:
+  #   - hosts:
+  #       - console.localhost.cosmonic.sh
+  #     secretName: cosmonic-control-tls
   rules:
-    - host: "console.localhost.cosmonic.sh"
-      http:
-        paths:
-          - backend:
-              service:
-                name: console
-                port:
-                  number: 8080
-            path: /
-            pathType: Prefix
+    # - host: "console.localhost.cosmonic.sh"
+    #   http:
+    #     paths:
+    #       - backend:
+    #           service:
+    #             name: console
+    #             port:
+    #               number: 8080
+    #         path: /
+    #         pathType: Prefix
     - host: "*.localhost.cosmonic.sh"
       http:
         paths:
