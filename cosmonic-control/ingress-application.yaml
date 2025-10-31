@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/cosmonic-labs/idp-stack
-    path: '/manifests'
+    repoURL: https://github.com/cosmonic-labs/idp-stack.git
+    path: 'manifests/'
     targetRevision: HEAD
   destination:
     name: in-cluster

@@ -20,7 +20,7 @@ First, install the IDP Builder tool by following the instructions at [idpbuilder
 To deploy using the public repository:
 
 ```bash
-idpbuilder create --host localhost.cosmonic.sh --extra-ports "80:80" -p https://github.com/cosmonic-labs/idp-stack
+idpbuilder create --host localhost.cosmonic.sh --extra-ports "80:80" -p https://github.com/cosmonic-labs/idp-stack//cosmonic-control
 ```
 
 ## Available Services
