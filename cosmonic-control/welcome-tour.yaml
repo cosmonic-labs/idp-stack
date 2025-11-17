@@ -15,6 +15,11 @@ spec:
         components:
           - name: welcome-tour
             image: ghcr.io/cosmonic-labs/components/welcome-tour:0.1.0
+            localResources:
+              environment:
+                config:
+                  consolehost: "http://localhost"
+                  consoleport: "8081"
 
         ingress:
           host: "welcome-tour.localhost.cosmonic.sh"
@@ -22,9 +27,9 @@ spec:
         hostInterfaces:
           - namespace: wasi
             package: config
-            version: 0.2.0-draft
+            version: 0.2.0-rc.1
             interfaces:
-              - runtime
+              - store
           - namespace: wasi
             package: logging
             version: 0.1.0-draft
